@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Modal Window Examples</title>
+
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- CSS: implied media="all" -->
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Droid+Sans">
+		<link rel="stylesheet" href="normalize.css">
+		<link rel="stylesheet" href="styles.css">
+		
+		<!-- Modal Window styles -->
+		<style>
+			.modalwindow_box {
+				background: #fff;
+				text-align: center;
+			}
+			.modalwindow_container {
+				padding: 20px;
+				
+			}
+			.modalwindow_buttons {
+				margin: 1em 0 0 0;
+			}
+			.modalwindow_buttons a {
+				display: inline-block;
+				margin: 0 6px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<header>
+			<h2>Modal Window Examples</h2>
+			
+			<p>Simple script to replace javascript build in prompt, confirm and alert.</p>
+			
+			<nav>
+				<ul>
+					<li><a href="#alert_example">Alert</a></li>
+					<li><a href="#confirm_example">Confirm</a></li>
+					<li><a href="#prompt_example">Prompt</a></li>
+				</ul>
+			</nav>
+			
+			<h4>Options</h4>
+			
+			<p><code>type</code> - alert, confirm, prompt<br />
+			<code>opacity</code> - opacity of overlay default is "0.5"<br />
+			<code>width</code> - width of popup, default is 300<br />
+			<code>height</code> - height of popup, default is auto<br />
+			<code>title</code> - title that appears in popup, default is "Popup"<br />
+			<code>text</code> - text that appears in popup window<br />
+			<code>yes_button</code> - yes button text, defaults to "yes"<br />
+			<code>no_button</code> - no button text, defaults to "no"<br />
+			<code>cancel_button</code> - cancel button text, defaults to "cancel"<br />
+			<code>yes</code> - yes callback function, defaults to null<br />
+			<code>no</code> - no callback function, defaults to null</p>
+		</header>
+
+		<section>
+			<a name="alert_example"></a>
+			<h3>Alert</h3>
+
+<pre><code>{
+	'type': "alert", 
+	'title': "My Alert", 
+	'text': "Good day sir"
+}</code></pre>
+
+			<p><a href="#alert">Run Example</a></p>
+		</section>
+		
+		<section>
+			<a name="confirm_example"></a>
+			<h3>Confirm</h3>
+			
+<pre><code>{
+	'type': "confirm", 
+	'title': "My confirm", 
+	'text': "Is this a Question?",
+	'yes_button': "Yes",
+	'no_button': "No",
+	'cancel_button': "Cancel",
+	'yes': function() {
+		alert("Yes Please");
+	},
+	'no': function() {
+		alert("No Thanks");
+	}
+}</code></pre>
+
+			<p><a href="#confirm">Run Example</a></p>
+		</section>
+		
+		<section>
+			<a name="prompt_example"></a>
+			<h3>Prompt</h3>
+			
+<pre><code>{
+	'type': "prompt", 
+	'title': "Hello", 
+	'text': "What is your name?",
+	'yes_button': "Ok",
+	'cancel_button': "Cancel",
+	'yes': function(value) {
+		alert('Hello ' + value);	
+	}
+}</code></pre>
+
+			<p><a href="#prompt">Run Example</a></p>
+		</section>
+
+		<footer>
+			<p>Fork me on <a href="https://github.com/rwarasaurus/modalwindow">Github</a></p>
+		</footer>
+
+		<script src="//ajax.googleapis.com/ajax/libs/mootools/1.4.1/mootools-yui-compressed.js"></script>
+		<script src="modalwindow.js"></script>
+		<script>
+			var example_alert = function() {
+				modalwindow.open({
+					'type': "alert", 
+					'title': "My Alert", 
+					'text': "Good day sir"
+				});
+				return false;
+			};
+			
+			$$('a[href=#alert]').addEvent('click', example_alert);
+			
+			var example_confirm = function() {
+				modalwindow.open({
+					'type': "confirm", 
+					'title': "My confirm", 
+					'text': "Is this a Question?",
+					'yes_button': "Yes",
+					'no_button': "No",
+					'cancel_button': "Cancel",
+					'yes': function() {
+						alert("Yes Please");
+					},
+					'no': function() {
+						alert("No Thanks");
+					}
+				});
+				return false;
+			};
+			
+			$$('a[href=#confirm]').addEvent('click', example_confirm);
+			
+			var example_prompt = function() {
+				modalwindow.open({
+					'type': "prompt", 
+					'title': "Hello", 
+					'text': "What is your name?",
+					'yes_button': "Ok",
+					'cancel_button': "Cancel",
+					'yes': function(value) {
+						alert('Hello ' + value);	
+					}
+				});
+				return false;
+			};
+			
+			$$('a[href=#prompt]').addEvent('click', example_prompt);
+		</script>
+
+
+		<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+			chromium.org/developers/how-tos/chrome-frame-getting-started -->
+
+		<!--[if lt IE 7 ]>
+		<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+		<script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+		<![endif]-->
+
+	</body>
+</html>
